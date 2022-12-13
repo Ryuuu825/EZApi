@@ -44,6 +44,28 @@ public class UsersOutDto // for sending data to client side
 }
 ```
 
+- Or just
+
+```csharp
+using EZApi.Attributes;
+
+public class Users : EZApi.Entity
+{
+    [NotMapToDtoAttribute]
+    public string Name { get; set; } = string.Empty;
+
+    public string Email { get; set; } = string.Empty;
+
+    [NotMapToIDtoAttribute]
+    public string Password { get; set; } = string.Empty;
+
+    public string Role { get; set; } = string.Empty;
+
+    [NotMapToODtoAttribute]
+    public string Token { get; set; } = string.Empty;
+}
+```
+
 - Then, you can create a controller
 
   - with just model definition
@@ -62,17 +84,17 @@ public class UsersOutDto // for sending data to client side
 
   - with model definition and DTO definition
 
-```csharp
-    [Route("v1/api/[controller]")] // optional, default is "api/[controller]s"
-    public class UsersController : EntityControllerBase
-        <Users, UsersInDto, UsersOutDto>
-    {
-        public UsersController(DbContext context) : base(context)
+    ```csharp
+        [Route("v1/api/[controller]")] // optional, default is "api/[controller]s"
+        public class UsersController : EntityControllerBase
+            <Users, UsersInDto, UsersOutDto>
         {
+            public UsersController(DbContext context) : base(context)
+            {
+            }
+            
         }
-        
-    }
-```
+    ```
 
 
 ## TODO
