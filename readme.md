@@ -51,17 +51,18 @@ using EZApi.Attributes;
 
 public class Users : EZApi.Entity
 {
-    [NotMapToDtoAttribute]
+    [NotMapToDtoAttribute] // equal to [NotMapToIDtoAttribute, NotMapToODtoAttribute]
     public string Name { get; set; } = string.Empty;
 
     public string Email { get; set; } = string.Empty;
 
-    [NotMapToIDtoAttribute]
+    [NotMapToODtoAttribute]
     public string Password { get; set; } = string.Empty;
 
+    [NotMapToIDtoAttribute]
     public string Role { get; set; } = string.Empty;
 
-    [NotMapToODtoAttribute]
+    [NotMapToIDtoAttribute]
     public string Token { get; set; } = string.Empty;
 }
 ```
